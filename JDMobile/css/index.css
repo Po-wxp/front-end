@@ -1,0 +1,132 @@
+body {
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 14px;
+    font-family: -apple-system,Helvetica, sans-serif;
+    color: #666;
+    height: 2000px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.app {
+    height: 45px;
+    
+}
+img {
+    vertical-align: middle;
+}
+.app ul li {
+    float: left;
+    height: 45px;
+    background-color: #333333;
+    text-align: center;
+    line-height: 45px;
+}
+.app ul li:nth-child(1){
+    width: 8%;
+}
+.app ul li:nth-child(1) img {
+    width: 10px;
+}
+.app ul li:nth-child(2){
+    width: 10%;
+}
+.app ul li:nth-child(2) img {
+    width: 30px;
+}
+.app ul li:nth-child(3){
+    width: 57%;
+    color: #fff;
+}
+.app ul li:nth-child(4){
+    width: 25%;
+    background-color: red;
+}
+.app ul li:nth-child(4) a {
+    color: #fff;
+    font-size: 16px;
+}
+.search-wrap {
+    position: fixed;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    height: 44px;
+    background-color: #716fcc;
+    text-align: center;
+    line-height: 44px;
+    overflow: hidden;
+}
+.search-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 44px;
+    background: url(../images/san.png) no-repeat 17px 14px;
+    background-size: 20px;
+    
+}
+.search-login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 44px;
+    float: right;
+}
+.search {
+    position: relative;
+    height: 30px;
+    margin: 7px 50px 0 50px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.search-login a {
+    color: #fff;
+}
+
+.jd-icon {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    width: 20px;
+    height: 15px;
+    background: url(../images/jd-icon.png) no-repeat;
+    background-size: 20px 15px;
+}
+.jd-icon::after {
+    position: absolute;
+    top: 0;
+    left: 26px;
+    content: "";
+    width: 1px;
+    height: 15px;
+    border-right: 1px solid #ddd;
+}
+.search-icon {
+    position: absolute;
+    top: 8px;
+    left: 50px;
+    width: 18px;
+    height: 15px;
+    background: url(../images/jingling.png) -82px 0;
+    background-size: 200px;
+}
+.search input {
+    position: absolute;
+    top: 8px;
+    left: 50px;
+}
+.slider img {
+    width: 100%;
+}

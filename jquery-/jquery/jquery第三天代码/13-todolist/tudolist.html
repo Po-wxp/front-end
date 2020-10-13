@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ToDoList—最简单的待办事项列表</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/todolist.js"></script> -->
+    <script>
+        $(function () {
+            showData();
+            $('#title').on("keydown", function (e) {
+                var title = $(this).val();
+                if (e.keyCode == 13 && title != '') {
+                    var local = getData();
+                    local.push({ "title": title, "done": false })
+                    setData(local);
+                    $(this).val('');
+
+                    showData();
+                }
+            })
+
+
+            $("#todolist,#donelist").on("change", "input", function () {
+                var index = $(this).siblings("a").attr("id");
+                var data = getData();
+                data[index].done = $(this).prop("checked");
+                setData(data);
+                showData();
+            })
+
+            // delete item
+            $("ol, ul").on("click", "a", function () {
+                var index = $(this).attr("id");
+                var data = getData();
+                data.splice(index, 1);
+                setData(data);
+                showData();
+            })
+
+        })
+
+        function getData() {
+            var data = localStorage.getItem("todolist");
+            if (data != null) {
+                return JSON.parse(data);
+            } else {
+                return [];
+            }
+        }
+
+        function setData(data) {
+            localStorage.setItem("todolist", JSON.stringify(data));
+        }
+
+        function showData() {
+            var data = getData();
+            var todocount = 0;
+            var donecount = 0;
+            $("ol, ul").empty();
+            $.each(data, function (i, ele) {
+                if (ele.done) {
+                    $("#donelist").prepend("<li><input type='checkbox' checked = 'checked'> <p>" + ele.title + "</p> <a href = 'javascript:;' id=" + i + " ></a ></li> ");
+                    donecount++;
+                } else {
+                    $("#todolist").prepend("<li><input type='checkbox'> <p>" + ele.title + "</p> <a href = 'javascript:;' id=" + i + " ></a ></li> ");
+                    todocount++
+                }
+            })
+            $("#todocount").html(todocount);
+            $("#donecount").html(donecount);
+        }
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <section>
+            <label for="title">ToDoList</label>
+            <input type="text" id="title" name="title" placeholder="添加ToDo" required="required" autocomplete="off" />
+        </section>
+    </header>
+    <section>
+        <h2>正在进行 <span id="todocount"></span></h2>
+        <ol id="todolist" class="demo-box">
+
+        </ol>
+        <h2>已经完成 <span id="donecount"></span></h2>
+        <ul id="donelist">
+
+        </ul>
+    </section>
+    <footer>
+        Copyright &copy; 2014 todolist.cn
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    button {
+        outline: none;
+        cursor: pointer;
+    }
+
+    input {
+        outline: none;
+    }
+
+    div {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .shade {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .3);
+    }
+
+    .login {
+        display: none;
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 300px;
+        background-color: #fff;
+    }
+
+    .login button {
+        position: absolute;
+        top: -13px;
+        right: -11px;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        border: 1px solid #fff;
+        background-color: #fff;
+    }
+
+    input[type='text'] {
+        width: 300px;
+        height: 30px;
+    }
+
+    .name,
+    .password {
+        margin: 30px 0;
+    }
+
+    p {
+        height: 50px;
+        line-height: 50px;
+    }
+
+    p:hover {
+        cursor: move;
+    }
+</style>
+<script>
+    window.addEventListener('load', function () {
+        var a = document.querySelector('a');
+        var login = document.querySelector('.login');
+        var shade = document.querySelector('.shade');
+        var p = document.querySelector('p');
+        p.addEventListener('mousedown', function (e) {
+            var left = e.pageX - login.offsetLeft;
+            var top = e.pageY - login.offsetTop;
+            console.log(left);
+            console.log(top);
+            document.addEventListener('mousemove', move)
+            function move(e) {
+                login.style.left = e.pageX - left + 'px';
+                login.style.top = e.pageY - top + 'px';
+            }
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', move)
+            })
+        })
+        a.addEventListener('click', function () {
+            login.style.display = 'block';
+            shade.style.display = 'block';
+        })
+    })
+</script>
+
+<body>
+    <div><a href="javascript:;">点击，弹出登录框</a></div>
+    <div class="login">
+        <form action="">
+            <button>x</button>
+            <p>login</p>
+            <div class="name">
+                username: <input type="text" placeholder="Please enter your usrername">
+            </div>
+            <div class="password">
+                password: <input type="text" placeholder="Please enter your password">
+            </div>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <div class="shade"></div>
+</body>
+
+</html>

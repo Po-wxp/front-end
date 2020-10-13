@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            var btn1 = document.querySelector('input');
+            var btn2 = document.querySelector('input')[1];
+
+            var app = new Vue({
+                el: "#box",
+                data: {
+                    joke: "heihei",
+                },
+                methods: {
+                    getJoke: function () {
+                        var that = this;
+                        axios.get("https://autumnfish.cn/api/joke?num=1").then(function (e) {
+                            console.log(e.data);
+                            that.joke = e.data;
+                        }, function (err) {
+                            console.log(err)
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="button" value="get" @click="getJoke">
+        <input type="button" value="post">
+        <div class="getV"> {{ joke }}</div>
+        <div class="postV"></div>
+    </div>
+</body>
+
+</html>
